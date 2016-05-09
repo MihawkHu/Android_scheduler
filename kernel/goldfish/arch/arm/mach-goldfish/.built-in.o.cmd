@@ -1,0 +1,1 @@
+cmd_arch/arm/mach-goldfish/built-in.o :=  arm-linux-androideabi-ld -EL    -r -o arch/arm/mach-goldfish/built-in.o arch/arm/mach-goldfish/pdev_bus.o arch/arm/mach-goldfish/timer.o arch/arm/mach-goldfish/switch.o arch/arm/mach-goldfish/pm.o arch/arm/mach-goldfish/board-goldfish.o 

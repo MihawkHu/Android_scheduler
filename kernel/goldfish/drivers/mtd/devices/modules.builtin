@@ -1,0 +1,2 @@
+kernel/drivers/mtd/devices/goldfish_nand.ko
+kernel/drivers/mtd/devices/goldfish_nand_cache.ko

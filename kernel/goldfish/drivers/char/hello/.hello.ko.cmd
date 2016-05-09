@@ -1,0 +1,1 @@
+cmd_/home/wangbo/kernel/goldfish/drivers/char/hello/hello.ko := arm-linux-androideabi-ld -r  -T /home/wangbo/kernel/goldfish/scripts/module-common.lds --build-id  -o /home/wangbo/kernel/goldfish/drivers/char/hello/hello.ko /home/wangbo/kernel/goldfish/drivers/char/hello/hello.o /home/wangbo/kernel/goldfish/drivers/char/hello/hello.mod.o

@@ -1,0 +1,1 @@
+cmd_drivers/net/built-in.o :=  arm-linux-androideabi-ld -EL    -r -o drivers/net/built-in.o drivers/net/mii.o drivers/net/Space.o drivers/net/loopback.o drivers/net/tun.o drivers/net/ethernet/built-in.o drivers/net/wireless/built-in.o 

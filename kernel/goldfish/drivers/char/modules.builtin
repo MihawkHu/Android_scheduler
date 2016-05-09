@@ -1,0 +1,2 @@
+kernel/drivers/char/goldfish_tty.ko
+kernel/drivers/char/hw_random/rng-core.ko
