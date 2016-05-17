@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <sys/syscall.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -20,7 +19,7 @@ struct prinfo {
 
 int main(int argc, char const *argv[]) {
     // check input
-    if (argc != 4) {
+    if (argc != 5) {
         printf("Input Error 1!\n");
         printf("Please input ./cas #process_name# #schedule_method# #descendants option#\n");
         exit(-1);
@@ -81,20 +80,31 @@ int main(int argc, char const *argv[]) {
     else if (strcmp(argv[3], "rr") == 0) sched_option = SCHED_RR;
     else {
         printf("Input Error 4!\n");
-        printf("The last parameter should be 'fifo' or 'rr'\n");
+        printf("The third parameter should be 'fifo' or 'rr'\n");
         exit(-1);
     }
     
     // set sched parameter
     struct sched_param param;
     int maxpri;
-    if (sched_option == SCHED_FIFO) maxpri = sched_get_priority_max(SCHED_FIFO);
-    else maxpri = sched_get_priority_max(SCHED_RR);
-    // printf("Max priority: %d\n", maxpri);
-    if(maxpri == -1) {
-        printf("Function sched_get_priority_max() failed\n"); 
+    if (strcmp(argv[4], "-d") == 0) {
+        if (sched_option == SCHED_FIFO) maxpri = sched_get_priority_max(SCHED_FIFO);
+        else maxpri = sched_get_priority_max(SCHED_RR);
+        if(maxpri == -1) {
+            printf("Function sched_get_priority_max() failed\n"); 
+            exit(-1);
+        }
+    }
+    else {
+        maxpri = atoi(argv[4]);
+    }
+    if (maxpri < 0 || maxpri > 99) {
+        printf("Input Error 5!\n");
+        printf("The last parameter should be '-d' or any number between 0~99\n");
+        printf("'-d' means default\n");
         exit(-1);
     }
+    // printf("Max priority: %d\n", maxpri);
     param.sched_priority = maxpri;
     
     // set scheduler
