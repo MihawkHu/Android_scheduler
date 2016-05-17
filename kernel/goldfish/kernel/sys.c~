@@ -129,8 +129,6 @@ EXPORT_SYMBOL(cad_pid);
 
 
 
-
-
 void (*pm_power_off_prepare)(void);
 
 /*
