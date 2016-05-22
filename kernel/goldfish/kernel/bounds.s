@@ -14,7 +14,7 @@
 @	compiled by GNU C version 4.8, GMP version 5.0.5, MPFR version 3.1.1, MPC version 1.0.1
 @ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 @ options passed:  -nostdinc
-@ -I /home/mihawk/kernel/goldfish/arch/arm/include
+@ -I /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include
 @ -I arch/arm/include/generated -I include
 @ -I arch/arm/mach-goldfish/include -imultilib armv7-a
 @ -iprefix /home/mihawk/Android/android-ndk-linux/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.9/
@@ -22,7 +22,7 @@
 @ -D KBUILD_BASENAME=KBUILD_STR(bounds)
 @ -D KBUILD_MODNAME=KBUILD_STR(bounds)
 @ -isystem /home/mihawk/Android/android-ndk-linux/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.9/include
-@ -include /home/mihawk/kernel/goldfish/include/linux/kconfig.h
+@ -include /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/include/linux/kconfig.h
 @ -MD kernel/.bounds.s.d kernel/bounds.c -mbionic -mlittle-endian -marm
 @ -mabi=aapcs-linux -mno-thumb-interwork -march=armv7-a -mfloat-abi=soft
 @ -mfpu=vfp -mtls-dialect=gnu -auxbase-strip kernel/bounds.s -Os -Wall

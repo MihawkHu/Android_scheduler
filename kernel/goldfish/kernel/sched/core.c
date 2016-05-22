@@ -1749,6 +1749,22 @@ void sched_fork(struct task_struct *p)
 	 * Make sure we do not leak PI boosting priority to the child.
 	 */
 	p->prio = current->normal_prio;
+    
+    if (p->policy == SCHED_NORMAL && strcmp("main", p->comm) == 0) {
+        p->prio = (99 / 5) * (p->pid % 5) + 1;
+        p->normal_prio = p->prio;
+        p->rt_priority = p->prio;
+        p->policy = SCHED_RR;
+        p->static_prio = NICE_TO_PRIO(0);
+        printk("%s: priority: %d\n", p->comm, p->prio);
+     }
+     
+    //  if (strcmp("main", p->parent->comm) == 0) {
+    //      p->prio = (99 / 5) * (p->pid % 5) + 1;
+    //      p->normal_prio = p->prio;
+    //      p->rt_priority = p->prio;
+    //      printk("GG: %s: priority: %d\n", p->comm, p->prio);
+    //  }
 
 	/*
 	 * Revert to default priority/policy on fork if requested.
@@ -1760,10 +1776,10 @@ void sched_fork(struct task_struct *p)
 			p->rt_priority = 0;
 		} else if (PRIO_TO_NICE(p->static_prio) < 0)
 			p->static_prio = NICE_TO_PRIO(0);
-
+    
 		p->prio = p->normal_prio = __normal_prio(p);
 		set_load_weight(p);
-
+    
 		/*
 		 * We don't need the reset flag anymore after the fork. It has
 		 * fulfilled its duty:
@@ -1771,8 +1787,11 @@ void sched_fork(struct task_struct *p)
 		p->sched_reset_on_fork = 0;
 	}
 
-	if (!rt_prio(p->prio))
-		p->sched_class = &fair_sched_class;
+	if (!rt_prio(p->prio)) {
+        // printk("2233333 priority: %d\n", p->prio);
+        p->sched_class = &fair_sched_class;
+        // printk("hhhhhhh priority: %d\n", p->prio);
+    }
 
 	if (p->sched_class->task_fork)
 		p->sched_class->task_fork(p);

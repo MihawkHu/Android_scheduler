@@ -1,4 +1,4 @@
-cmd_arch/arm/boot/compressed/head.o := arm-linux-androideabi-gcc -Wp,-MD,arch/arm/boot/compressed/.head.o.d  -nostdinc -isystem /home/mihawk/Android/android-ndk-linux/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.9/include -I/home/mihawk/kernel/goldfish/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/mihawk/kernel/goldfish/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-goldfish/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float      -DTEXT_OFFSET=0x00008000   -c -o arch/arm/boot/compressed/head.o arch/arm/boot/compressed/head.S
+cmd_arch/arm/boot/compressed/head.o := arm-linux-androideabi-gcc -Wp,-MD,arch/arm/boot/compressed/.head.o.d  -nostdinc -isystem /home/mihawk/Android/android-ndk-linux/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.9/include -I/home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-goldfish/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float      -DTEXT_OFFSET=0x00008000   -c -o arch/arm/boot/compressed/head.o arch/arm/boot/compressed/head.S
 
 source_arch/arm/boot/compressed/head.o := arch/arm/boot/compressed/head.S
 
@@ -24,7 +24,7 @@ deps_arch/arm/boot/compressed/head.o := \
     $(wildcard include/config/thumb2/kernel.h) \
     $(wildcard include/config/processor/id.h) \
     $(wildcard include/config/cpu/feroceon/old/id.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/unified.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
   include/linux/linkage.h \
   include/linux/compiler.h \
@@ -33,7 +33,7 @@ deps_arch/arm/boot/compressed/head.o := \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/linkage.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/linkage.h \
 
 arch/arm/boot/compressed/head.o: $(deps_arch/arm/boot/compressed/head.o)
 

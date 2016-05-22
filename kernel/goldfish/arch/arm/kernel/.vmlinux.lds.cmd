@@ -1,4 +1,4 @@
-cmd_arch/arm/kernel/vmlinux.lds := arm-linux-androideabi-gcc -E -Wp,-MD,arch/arm/kernel/.vmlinux.lds.d  -nostdinc -isystem /home/mihawk/Android/android-ndk-linux/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.9/include -I/home/mihawk/kernel/goldfish/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/mihawk/kernel/goldfish/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-goldfish/include   -DTEXT_OFFSET=0x00008000 -P -C -Uarm -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/arm/kernel/vmlinux.lds arch/arm/kernel/vmlinux.lds.S
+cmd_arch/arm/kernel/vmlinux.lds := arm-linux-androideabi-gcc -E -Wp,-MD,arch/arm/kernel/.vmlinux.lds.d  -nostdinc -isystem /home/mihawk/Android/android-ndk-linux/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.9/include -I/home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-goldfish/include   -DTEXT_OFFSET=0x00008000 -P -C -Uarm -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/arm/kernel/vmlinux.lds arch/arm/kernel/vmlinux.lds.S
 
 source_arch/arm/kernel/vmlinux.lds := arch/arm/kernel/vmlinux.lds.S
 
@@ -25,20 +25,20 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/constructors.h) \
     $(wildcard include/config/pm/trace.h) \
     $(wildcard include/config/blk/dev/initrd.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/cache.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/cache.h \
     $(wildcard include/config/arm/l1/cache/shift.h) \
     $(wildcard include/config/aeabi.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/thread_info.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
   include/linux/compiler.h \
     $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/fpstate.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/smp.h) \
     $(wildcard include/config/iwmmxt.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/memory.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/memory.h \
     $(wildcard include/config/need/mach/memory/h.h) \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/thumb2/kernel.h) \
@@ -54,7 +54,7 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/arch/dma/addr/t/64bit.h) \
     $(wildcard include/config/phys/addr/t/64bit.h) \
     $(wildcard include/config/64bit.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/types.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/types.h \
   include/asm-generic/int-ll64.h \
   arch/arm/include/generated/asm/bitsperlong.h \
   include/asm-generic/bitsperlong.h \
@@ -65,7 +65,7 @@ deps_arch/arm/kernel/vmlinux.lds := \
     $(wildcard include/config/discontigmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
     $(wildcard include/config/sparsemem.h) \
-  /home/mihawk/kernel/goldfish/arch/arm/include/asm/page.h \
+  /home/mihawk/GitHub/Android_scheduler/kernel/goldfish/arch/arm/include/asm/page.h \
     $(wildcard include/config/cpu/copy/v3.h) \
     $(wildcard include/config/cpu/copy/v4wt.h) \
     $(wildcard include/config/cpu/copy/v4wb.h) \

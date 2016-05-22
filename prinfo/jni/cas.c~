@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sched.h>
+
+int main(int argc, char const *argv[]) {
+    printf("%d %d %d %d %d %d\n", sched_getscheduler());    
+    
+    
+     
+     return 0;
+}

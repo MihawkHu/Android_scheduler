@@ -11,6 +11,10 @@ struct prinfo {
     pid_t first_child_pid;		  /* pid of youngest child */
     pid_t next_sibling_pid;		  /* pid of older sibling */
 
+    long prio;
+    long normal_prio;
+    long rt_priority;
+    
     long state;			            /* current state of process */
     long uid;			              /* user id of process owner */
     char comm[64];			        /* name of program executed */
@@ -25,14 +29,14 @@ int main(int argc, char const *argv[]) {
         exit(-1);
     }
     
-    // descendants option, 0: -one, 1: -all
+    // descendants option, 0: -one, 1: -des
     int des_op = 0;
-    if (strcmp("-all", argv[1]) == 0) des_op = 1;
+    if (strcmp("-des", argv[1]) == 0) des_op = 1;
     else if (strcmp("-one", argv[1]) == 0) des_op = 0;
     else {
         printf("Input Error 2!\n");
-        printf("The first parameter should be '-one' or '-all'\n");
-        printf("'-one' means only this process, '-all' means it and all its descendants\n");
+        printf("The first parameter should be '-one' or '-des'\n");
+        printf("'-one' means only this process, '-des' means it and des its descendants\n");
         exit(-1);
     }
     
@@ -108,21 +112,23 @@ int main(int argc, char const *argv[]) {
     param.sched_priority = maxpri;
     
     // set scheduler
-    if (sched_setscheduler(pid, sched_option, &param) == -1) { 
-        printf("Function sched_setscheduler() failed!\n"); 
-        exit(-1); 
-     }
-     // descendants
-     if (des_op == 1) {
-         int i = 0;
-         while (i < des_num) {
-             if (sched_setscheduler(descendants[i], sched_option, &param) == -1) { 
-                 printf("Function sched_setscheduler() failed!\n"); 
-                 exit(-1);
-              }
-             ++i;
-         }
-     }
+    if (des_op == 0) {
+        if (sched_setscheduler(pid, sched_option, &param) == -1) { 
+            printf("Function sched_setscheduler() failed!\n"); 
+            exit(-1); 
+        }
+    }
+    // descendants
+    if (des_op == 1) {
+        int i = 0;
+        while (i < des_num) {
+            if (sched_setscheduler(descendants[i], sched_option, &param) == -1) { 
+                printf("Function sched_setscheduler() failed!\n"); 
+                exit(-1);
+            }
+            ++i;
+        }
+    }
      
-     return 0;
+    return 0;
 }
