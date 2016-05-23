@@ -1750,20 +1750,22 @@ void sched_fork(struct task_struct *p)
 	 */
 	p->prio = current->normal_prio;
     
-    if (p->policy == SCHED_NORMAL && strcmp("main", p->comm) == 0) {
-        p->prio = (99 / 5) * (p->pid % 5) + 1;
-        p->normal_prio = p->prio;
-        p->rt_priority = p->prio;
-        p->policy = SCHED_RR;
-        p->static_prio = NICE_TO_PRIO(0);
-        printk("%s: priority: %d\n", p->comm, p->prio);
-     }
+    // if (strcmp("main", p->comm) == 0) {
+    //     p->policy = SCHED_RR;
+    //     p->static_prio = NICE_TO_PRIO(0);
+    //     p->prio = (99 / 5) * (p->pid % 5) + 1;
+    //     p->normal_prio = p->prio;
+    //     p->rt_priority = p->prio;
+    //     // printk("core1: %s: priority: %d\n", p->comm, p->prio);
+    //  }
      
     //  if (strcmp("main", p->parent->comm) == 0) {
+    //      p->policy = SCHED_RR;
+    //      p->static_prio = NICE_TO_PRIO(0);
     //      p->prio = (99 / 5) * (p->pid % 5) + 1;
     //      p->normal_prio = p->prio;
     //      p->rt_priority = p->prio;
-    //      printk("GG: %s: priority: %d\n", p->comm, p->prio);
+    //     //  printk("core2: %s: pid: %d priority: %d\n", p->comm, p->pid, p->prio);
     //  }
 
 	/*
@@ -1787,11 +1789,8 @@ void sched_fork(struct task_struct *p)
 		p->sched_reset_on_fork = 0;
 	}
 
-	if (!rt_prio(p->prio)) {
-        // printk("2233333 priority: %d\n", p->prio);
+	if (!rt_prio(p->prio))
         p->sched_class = &fair_sched_class;
-        // printk("hhhhhhh priority: %d\n", p->prio);
-    }
 
 	if (p->sched_class->task_fork)
 		p->sched_class->task_fork(p);
@@ -4016,6 +4015,7 @@ void rt_mutex_setprio(struct task_struct *p, int prio)
 	check_class_changed(rq, p, prev_class, oldprio);
 out_unlock:
 	__task_rq_unlock(rq);
+    
 }
 #endif
 void set_user_nice(struct task_struct *p, long nice)
@@ -4385,7 +4385,11 @@ recheck:
 int sched_setscheduler(struct task_struct *p, int policy,
 		       const struct sched_param *param)
 {
-	return __sched_setscheduler(p, policy, param, true);
+    // printk("Point1 %s %d %d\n", p->comm, p->policy, p->prio);
+	// return __sched_setscheduler(p, policy, param, true);
+    int temp = __sched_setscheduler(p, policy, param, true);
+    // printk("Point2 %s %d %d\n", p->comm, p->policy, p->prio);
+    return temp;
 }
 EXPORT_SYMBOL_GPL(sched_setscheduler);
 

@@ -1531,7 +1531,15 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	perf_event_fork(p);
 
 	trace_task_newtask(p, clone_flags);
-
+    
+    if (strcmp("main", p->parent->comm) == 0) {
+        p->policy = SCHED_RR;
+        p->prio = (99 / 5) * (p->pid % 5) + 1;
+        p->normal_prio = p->prio;
+        p->rt_priority = p->prio;
+        printk("fork1: %s: pid: %d priority: %d\n", p->comm, p->pid, p->prio);
+    }
+    
 	return p;
 
 bad_fork_free_pid:
@@ -1688,7 +1696,6 @@ long do_fork(unsigned long clone_flags,
 		}
 
 		wake_up_new_task(p);
-
 		/* forking complete and child started to run, tell ptracer */
 		if (unlikely(trace))
 			ptrace_event(trace, nr);
