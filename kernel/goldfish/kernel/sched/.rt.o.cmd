@@ -474,6 +474,12 @@ deps_kernel/sched/rt.o := \
     $(wildcard include/config/slab.h) \
   include/linux/slab_def.h \
   include/linux/kmalloc_sizes.h \
+  include/linux/random.h \
+    $(wildcard include/config/arch/random.h) \
+  include/linux/ioctl.h \
+  arch/arm/include/generated/asm/ioctl.h \
+  include/asm-generic/ioctl.h \
+  include/linux/irqnr.h \
 
 kernel/sched/rt.o: $(deps_kernel/sched/rt.o)
 

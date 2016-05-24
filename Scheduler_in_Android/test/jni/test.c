@@ -6,7 +6,7 @@
 int main()
 {
     double a = 1254125135;
-    int cnt1 = 8000000;
+    int cnt1 = 15000000;
     while (cnt1 > 0) {
         cnt1--;
         a = sqrt(abs(a));

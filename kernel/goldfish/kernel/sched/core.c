@@ -4385,11 +4385,7 @@ recheck:
 int sched_setscheduler(struct task_struct *p, int policy,
 		       const struct sched_param *param)
 {
-    // printk("Point1 %s %d %d\n", p->comm, p->policy, p->prio);
-	// return __sched_setscheduler(p, policy, param, true);
-    int temp = __sched_setscheduler(p, policy, param, true);
-    // printk("Point2 %s %d %d\n", p->comm, p->policy, p->prio);
-    return temp;
+    return __sched_setscheduler(p, policy, param, true);
 }
 EXPORT_SYMBOL_GPL(sched_setscheduler);
 

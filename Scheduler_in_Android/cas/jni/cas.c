@@ -25,7 +25,7 @@ int main(int argc, char const *argv[]) {
     // check input
     if (argc != 5) {
         printf("Input Error 1!\n");
-        printf("Please input ./cas #process_name# #schedule_method# #descendants option#\n");
+        printf("Please input ./cas #descendants option# #process_name# #schedule_method# #priority#\n");
         exit(-1);
     }
     

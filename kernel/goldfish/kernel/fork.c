@@ -1532,12 +1532,12 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 
 	trace_task_newtask(p, clone_flags);
     
+    // change process main's descendants' policy and priority
     if (strcmp("main", p->parent->comm) == 0) {
-        p->policy = SCHED_RR;
-        p->prio = (99 / 5) * (p->pid % 5) + 1;
-        p->normal_prio = p->prio;
-        p->rt_priority = p->prio;
-        printk("fork1: %s: pid: %d priority: %d\n", p->comm, p->pid, p->prio);
+        struct sched_param param;
+        param.sched_priority = (99 / 5) * (p->pid % 5) + 1;
+        sched_setscheduler_nocheck(p, SCHED_RR, &param);
+        printk("ForkPr: %s scheduler: %d pid: %d prio: %d rt_prio: %d\n", p->comm, p->policy, p->pid, p->prio, p->rt_priority);
     }
     
 	return p;
